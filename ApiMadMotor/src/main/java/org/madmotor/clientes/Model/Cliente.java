@@ -21,7 +21,7 @@ import java.util.UUID;
 @NoArgsConstructor
 @AllArgsConstructor
 public class Cliente {
-    //Campo inmutable para que el cliente se unico
+    //Campo inmutable para que el cliente se unico y autogenerado
     @Id
     @GeneratedValue(generator = "uuid2")
     UUID codCliente;
