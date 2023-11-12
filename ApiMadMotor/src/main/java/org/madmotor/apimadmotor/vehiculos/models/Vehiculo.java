@@ -21,13 +21,12 @@ import java.util.UUID;
 @Builder
 @Entity
 @Table(name = "VEHICULOS")
-@EntityListeners(AuditingEntityListener.class)
 public class Vehiculo {
     public static final String IMAGE_DEFAULT = "https://loremflickr.com/150/150";
 
     @Id
     @GeneratedValue(strategy = GenerationType.UUID)
-    private UUID id=UUID.randomUUID();
+    private UUID id = UUID.randomUUID();
 
     @Column(name = "marca", nullable = false)
     @NotBlank(message = "Debe de tener una marca")
@@ -37,19 +36,27 @@ public class Vehiculo {
     @NotBlank(message = "El modelo no puede estar vacio")
     private String modelo;
 
+    @Column(name = "year", nullable = false)
+    @Min(value = 1900, message = "El año no puede ser menor a 1900")
+    private Integer year;
+
+    @Column(name = "km", nullable = false)
+    @Min(value = 0, message = "Los kilometros no pueden ser negativos")
+    private Double km;
+
     @Column(name = "precio", nullable = false)
     @Min(value = 0, message = "El precio no puede ser negativo")
     @Builder.Default
-    private Double precio=0.0;
+    private Double precio = 0.0;
 
     @Column(name = "stock", nullable = false)
-    @Min(value =0, message = "El stock no puede ser negativo")
+    @Min(value = 0, message = "El stock no puede ser negativo")
     @Builder.Default
-    private Integer stock=0;
+    private Integer stock = 0;
 
-    @Column (name="imagen",columnDefinition="TEXT DEFAULT '"+IMAGE_DEFAULT+"'")
+    @Column(name = "imagen", columnDefinition = "TEXT DEFAULT '" + IMAGE_DEFAULT + "'")
     @Builder.Default
-    private String imagen=IMAGE_DEFAULT;
+    private String imagen = IMAGE_DEFAULT;
 
     @Column(name = "descripcion", nullable = false)
     @NotBlank(message = "La descripcion no puede estar vacia")
@@ -58,16 +65,16 @@ public class Vehiculo {
     @CreationTimestamp
     @Column(updatable = false, nullable = false, columnDefinition = "TIMESTAMP DEFAULT CURRENT_TIMESTAMP")
     @Builder.Default
-    private LocalDateTime createdAt=LocalDateTime.now();
+    private LocalDateTime createdAt = LocalDateTime.now();
 
     @CreationTimestamp
     @Column(nullable = false, columnDefinition = "TIMESTAMP DEFAULT CURRENT_TIMESTAMP")
     @Builder.Default
-    private LocalDateTime updatedAt=LocalDateTime.now();
+    private LocalDateTime updatedAt = LocalDateTime.now();
 
     @Builder.Default
     @Column(columnDefinition = "boolean default false")
-    private Boolean isDeleted=false;
+    private Boolean isDeleted = false;
 
     @ManyToOne
     @JoinColumn(name = "categoria_id")
