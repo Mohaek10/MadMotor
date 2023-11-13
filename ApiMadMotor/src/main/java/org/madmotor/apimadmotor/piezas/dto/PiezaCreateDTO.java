@@ -2,6 +2,7 @@ package org.madmotor.apimadmotor.piezas.dto;
 
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.Positive;
+import jakarta.validation.constraints.PositiveOrZero;
 import org.hibernate.validator.constraints.Length;
 
 public class PiezaCreateDTO {
@@ -13,5 +14,7 @@ public class PiezaCreateDTO {
     private String description;
     @Positive
     private Double price;
+    @PositiveOrZero
+    private Integer stock;
 
 }
