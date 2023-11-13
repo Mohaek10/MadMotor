@@ -72,13 +72,12 @@ public class Vehiculo {
     @Builder.Default
     private LocalDateTime updatedAt = LocalDateTime.now();
 
-    @Builder.Default
-    @Column(columnDefinition = "boolean default false")
-    private Boolean isDeleted = false;
-
     @ManyToOne
     @JoinColumn(name = "categoria_id")
     private Categoria categoria;
 
+    @Builder.Default
+    @Column(columnDefinition = "boolean default false")
+    private Boolean isDeleted = false;
 
 }

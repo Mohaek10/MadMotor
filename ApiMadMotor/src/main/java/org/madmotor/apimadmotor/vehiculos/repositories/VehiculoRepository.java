@@ -24,4 +24,6 @@ public interface VehiculoRepository extends JpaRepository<Vehiculo, UUID>, JpaSp
 
 
 
+
+
 }
