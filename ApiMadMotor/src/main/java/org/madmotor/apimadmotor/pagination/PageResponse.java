@@ -4,7 +4,7 @@ import org.springframework.data.domain.Page;
 
 import java.util.List;
 
-public record PageResponse<T> (
+public record PageResponse<T>(
         List<T> content,
         int totalPages,
         long totalElements,
@@ -17,7 +17,7 @@ public record PageResponse<T> (
         String sortBy,
         String direction
 
-){
+) {
     public static <T> PageResponse<T> of(Page<T> page, String sortBy, String direction) {
         return new PageResponse<>(
                 page.getContent(),
