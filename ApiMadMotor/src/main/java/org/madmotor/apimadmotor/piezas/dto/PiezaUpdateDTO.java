@@ -2,6 +2,7 @@ package org.madmotor.apimadmotor.piezas.dto;
 
 import jakarta.validation.constraints.NotNull;
 import jakarta.validation.constraints.Positive;
+import jakarta.validation.constraints.PositiveOrZero;
 import lombok.Builder;
 import lombok.Data;
 import org.hibernate.validator.constraints.Length;
@@ -17,6 +18,8 @@ public class PiezaUpdateDTO {
     private Double price;
     @NotNull
     private String image;
+    @PositiveOrZero
+    private Integer stock;
 
 
 }
