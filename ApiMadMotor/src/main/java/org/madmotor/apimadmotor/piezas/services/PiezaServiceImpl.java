@@ -36,7 +36,7 @@ public class PiezaServiceImpl implements PiezaService {
 
 
     @Override
-    public Page<PiezaResponseDTO> findAll(Optional<UUID> id, Optional<String> name, Optional<String> description, Optional<Double> price, Optional<String> image, Pageable pageable) {
+    public Page<PiezaResponseDTO> findAll(Optional<String> name, Optional<String> description, Optional<Double> price,Optional<Integer> stock,  Pageable pageable) {
         Specification<Pieza> specNombreProducto = (root, query, criteriaBuilder) ->
                 name.map(m -> criteriaBuilder.like(criteriaBuilder.lower(root.get("name")), "%" + m.toLowerCase() + "%"))
                         .orElseGet(() -> criteriaBuilder.isTrue(criteriaBuilder.literal(true)));
