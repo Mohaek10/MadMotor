@@ -8,6 +8,7 @@ import org.madmotor.apimadmotor.vehiculos.models.Vehiculo;
 import org.madmotor.apimadmotor.vehiculos.repositories.VehiculoRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.cache.annotation.CacheConfig;
+import org.springframework.cache.annotation.CachePut;
 import org.springframework.cache.annotation.Cacheable;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
@@ -45,6 +46,7 @@ public class VehiculoServiceImpl implements VehiculoService{
 
     }
 
+    @CachePut
     @Override
     public Vehiculo save(VehiculoCreateDto vehiculoCreateDto) {
         return null;
