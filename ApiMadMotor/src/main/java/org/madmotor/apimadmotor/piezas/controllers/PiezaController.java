@@ -60,57 +60,37 @@ public class PiezaController {
                 .body(PageResponse.of(pageResult,sortBy,order));
 
     }
-    @ApiResponses(value = {
-            @ApiResponse(responseCode = "200", description = "Producto"),
-            @ApiResponse(responseCode = "404", description = "Producto no encontrado"),
-    })
+
     @GetMapping("/{id}")
     public ResponseEntity<PiezaResponseDTO> getProductById(@PathVariable UUID id) {
-        log.info("Buscando producto por id: " + id);
+        log.info("Buscando pieza por id: " + id);
         return ResponseEntity.ok(piezaService.findById(id));
     }
-    @io.swagger.v3.oas.annotations.parameters.RequestBody(description = "Producto a crear", required = true)
-    @ApiResponses(value = {
-            @ApiResponse(responseCode = "201", description = "Producto creado"),
-            @ApiResponse(responseCode = "400", description = "Producto no válido"),
-    })
+
     @PostMapping()
 
-    public ResponseEntity<PiezaResponseDTO> createProduct(@Valid @RequestBody PiezaCreateDTO productoCreateRequest) {
-        log.info("Creando producto: " + productoCreateRequest);
-        return ResponseEntity.status(HttpStatus.CREATED).body(piezaService.save(productoCreateRequest));
+    public ResponseEntity<PiezaResponseDTO> createProduct(@Valid @RequestBody PiezaCreateDTO piezaCreateDTO) {
+        log.info("Creando pieza: " + piezaCreateDTO);
+        return ResponseEntity.status(HttpStatus.CREATED).body(piezaService.save(piezaCreateDTO));
     }
-    @io.swagger.v3.oas.annotations.parameters.RequestBody(description = "Producto a actualizar", required = true)
-    @ApiResponses(value = {
-            @ApiResponse(responseCode = "200", description = "Producto actualizado"),
-            @ApiResponse(responseCode = "400", description = "Producto no válido"),
-            @ApiResponse(responseCode = "404", description = "Producto no encontrado"),
-    })
+
     @PutMapping("/{id}")
 
-    public ResponseEntity<PiezaResponseDTO> updateProduct(@PathVariable UUID id, @Valid @RequestBody PiezaUpdateDTO productoUpdateRequest) {
-        log.info("Actualizando producto por id: " + id + " con producto: " + productoUpdateRequest);
-        return ResponseEntity.ok(piezaService.update(id, productoUpdateRequest));
+    public ResponseEntity<PiezaResponseDTO> updateProduct(@PathVariable UUID id, @Valid @RequestBody PiezaUpdateDTO piezaUpdateDTO) {
+        log.info("Actualizando pieza por id: " + id + " con pieza: " + piezaUpdateDTO);
+        return ResponseEntity.ok(piezaService.update(id, piezaUpdateDTO));
     }
 
-    @io.swagger.v3.oas.annotations.parameters.RequestBody(description = "Producto a actualizar", required = true)
-    @ApiResponses(value = {
-            @ApiResponse(responseCode = "200", description = "Producto actualizado"),
-            @ApiResponse(responseCode = "400", description = "Producto no válido"),
-            @ApiResponse(responseCode = "404", description = "Producto no encontrado"),
-    })
+
     @PatchMapping("/{id}")
-    public ResponseEntity<PiezaResponseDTO> updatePartialProduct(@PathVariable UUID id, @Valid @RequestBody PiezaUpdateDTO productoUpdateRequest) {
-        log.info("Actualizando parcialmente producto por id: " + id + " con producto: " + productoUpdateRequest);
-        return ResponseEntity.ok(piezaService.update(id, productoUpdateRequest));
+    public ResponseEntity<PiezaResponseDTO> updatePartialPieza(@PathVariable UUID id, @Valid @RequestBody PiezaUpdateDTO piezaUpdateDTO) {
+        log.info("Actualizando parcialmente pieza por id: " + id + " con pieza: " +piezaUpdateDTO );
+        return ResponseEntity.ok(piezaService.update(id, piezaUpdateDTO));
     }
-    @ApiResponses(value = {
-            @ApiResponse(responseCode = "204", description = "Producto borrado"),
-            @ApiResponse(responseCode = "404", description = "Producto no encontrado"),
-    })
+
     @DeleteMapping("/{id}")
-    public ResponseEntity<Void> deleteProduct(@PathVariable UUID id) {
-        log.info("Borrando producto por id: " + id);
+    public ResponseEntity<Void> deletePieza(@PathVariable UUID id) {
+        log.info("Borrando pieza por id: " + id);
         piezaService.deleteById(id);
         return ResponseEntity.status(HttpStatus.NO_CONTENT).build();
     }
