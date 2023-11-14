@@ -22,7 +22,7 @@ import java.util.UUID;
 public class Pieza {
     private static final String IMAGE_DEFAULT = "https://via.placeholder.com/150";
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @GeneratedValue(strategy = GenerationType.UUID)
     private UUID id;
     @Column(name = "nombre", nullable = false, length = 50)
     @NotBlank
